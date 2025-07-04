@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sign Up - MedTrack</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f4f9ff;
+      padding: 40px;
+      margin: 0;
+    }
+
+    .container {
+      max-width: 500px;
+      margin: auto;
+      background-color: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #0077b6;
+    }
+
+    .role-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-bottom: 30px;
+    }
+
+    .role-buttons label {
+      width: 130px;
+      height: 60px;
+      font-size: 1.1em;
+      border: 2px solid #0077b6;
+      background-color: white;
+      color: #0077b6;
+      cursor: pointer;
+      border-radius: 8px;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .role-buttons input[type="radio"]:checked + label {
+      background-color: #0077b6;
+      color: white;
+    }
+
+    form label {
+      display: block;
+      margin-top: 15px;
+      font-weight: 500;
+    }
+
+    form input,
+    form select {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+
+    form button.submit {
+      width: 100%;
+      margin-top: 25px;
+      background-color: #0077b6;
+      color: white;
+      padding: 12px;
+      font-size: 1em;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    form button.submit:hover {
+      background-color: #023e8a;
+    }
+
+    .note {
+      font-size: 0.85em;
+      color: #555;
+      margin-top: 5px;
+    }
+
+    .hidden-radio {
+      display: none;
+    }
+
+    .error {
+      color: red;
+      font-size: 0.9em;
+      margin-top: 5px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Create an Account</h2>
+
+    <form method="post" action="/signup">
+      <div class="role-buttons">
+        <input type="radio" id="role_patient" name="role" value="patient" class="hidden-radio" required />
+        <label for="role_patient">Patient</label>
+
+        <input type="radio" id="role_doctor" name="role" value="doctor" class="hidden-radio" />
+        <label for="role_doctor">Doctor</label>
+      </div>
+
+      <label for="name">Full Name</label>
+      <input type="text" id="name" name="name" required />
+
+      <label for="email">Email Address</label>
+      <input type="email" id="email" name="email" required />
+
+      <label for="password">Password</label>
+      <input type="password" id="password" name="password" required />
+
+      <label for="confirm_password">Confirm Password</label>
+      <input type="password" id="confirm_password" name="confirm_password" required />
+      {% if password_error %}
+        <div class="error">{{ password_error }}</div>
+      {% endif %}
+
+      <label for="age">Age</label>
+      <input type="number" id="age" name="age" required />
+
+      <label for="gender">Gender</label>
+      <select id="gender" name="gender" required>
+        <option value="">--Select--</option>
+        <option value="male">Male</option>
+        <option value="female">Female</option>
+        <option value="other">Other</option>
+      </select>
+
+      <label for="specialization">Specialization</label>
+      <select id="specialization" name="specialization">
+        <option value="">--Select--</option>
+        <option value="general">General Medicine</option>
+        <option value="ortho">Orthopedics</option>
+        <option value="neuro">Neurology</option>
+        <option value="cardio">Cardiology</option>
+        <option value="derma">Dermatology</option>
+        <option value="pediatrics">Pediatrics</option>
+        <option value="psychiatry">Psychiatry</option>
+        <option value="radiology">Radiology</option>
+        <option value="ent">ENT</option>
+        <option value="gynecology">Gynecology</option>
+        <option value="dental">Dental</option>
+        <option value="surgery">Surgery</option>
+        <option value="other">Other</option>
+      </select>
+      <div class="note">Only required if you are registering as a Doctor.</div>
+      {% if specialization_error %}
+        <div class="error">{{ specialization_error }}
+        </div>
+      {% endif %}
+
+      <button type="submit" class="submit">Sign Up</button>
+    </form>
+  </div>
+</body>
+</html>

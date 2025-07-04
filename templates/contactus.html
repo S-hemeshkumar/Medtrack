@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Contact Us - MedTrack</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f4f9fc;
+      color: #333;
+    }
+
+    header {
+      background-color: #1976d2;
+      color: white;
+      padding: 20px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 1.8em;
+    }
+
+    .home-link a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      background-color: rgba(255, 255, 255, 0.2);
+      padding: 8px 14px;
+      border-radius: 6px;
+    }
+
+    .home-link a:hover {
+      background-color: rgba(255, 255, 255, 0.3);
+    }
+
+    main {
+      max-width: 700px;
+      margin: 40px auto;
+      padding: 30px;
+      background-color: white;
+      border-radius: 12px;
+      box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+      color: #1976d2;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    p {
+      font-size: 1.1rem;
+      line-height: 1.6;
+    }
+
+    a {
+      color: #1976d2;
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    footer {
+      background-color: #1976d2;
+      color: white;
+      text-align: center;
+      padding: 15px 0;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Contact Us</h1>
+    <div class="home-link">
+      <a href="{{ url_for('index') }}">← Back to Home</a>
+    </div>
+  </header>
+
+  <main>
+    <h2>We’d love to hear from you!</h2>
+    <p>If you have questions about MedTrack, feedback, or need technical support, feel free to reach out.</p>
+
+    <p><strong>Official Website:</strong><br>
+      <a href="http://127.0.0.1:5000" target="_blank">http://127.0.0.1:5000</a>
+    </p>
+
+    <p><strong>Email:</strong><br>
+      support@medtrack.health (example only)</p>
+
+    <p><strong>Phone:</strong><br>
+      +91-123-456-7890 (example only)</p>
+  </main>
+
+  <footer>© 2025 MedTrack</footer>
+</body>
+</html>

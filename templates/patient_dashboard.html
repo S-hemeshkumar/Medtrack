@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Patient Dashboard - MedTrack</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f0f4f8;
+    }
+    header {
+      background-color: #0077b6;
+      color: white;
+      padding: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 1.8em;
+    }
+    nav a {
+      color: white;
+      margin-left: 20px;
+      text-decoration: none;
+      font-weight: 500;
+    }
+    nav a:hover {
+      text-decoration: underline;
+    }
+    .container {
+      max-width: 1000px;
+      margin: 30px auto;
+      padding: 20px;
+    }
+    .card {
+      background-color: white;
+      padding: 20px;
+      margin-bottom: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+    .card h2 {
+      margin-top: 0;
+      color: #0077b6;
+    }
+    .btn {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 10px 20px;
+      background-color: #0077b6;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .btn:hover {
+      background-color: #023e8a;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+    }
+    th, td {
+      padding: 10px;
+      border: 1px solid #ccc;
+      text-align: left;
+    }
+    th {
+      background-color: #e0f2fe;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>MedTrack - Patient Dashboard</h1>
+    {% if full_dashboard %}
+    <nav>
+      <a href="/logout">Logout</a>
+    </nav>
+    {% endif %}
+  </header>
+
+  <div class="container">
+
+    {% if full_dashboard %}
+    <div class="card">
+      <h2>Welcome, {{ user.name }}</h2>
+      <p>Track your appointments, view medical records, and stay connected with your healthcare providers.</p>
+    </div>
+    {% endif %}
+
+    <div class="card">
+      <h2>Patient Information</h2>
+      <p><strong>Email:</strong> {{ user.email }}</p>
+      <p><strong>Age:</strong> {{ user.age }}</p>
+      <p><strong>Gender:</strong> {{ user.gender }}</p>
+      <p><strong>Contact Number:</strong> {{ details.contact }}</p>
+      <p><strong>Address:</strong> {{ details.address }}</p>
+      <p><strong>Blood Group:</strong> {{ details.blood_group }}</p>
+      <p><strong>Height:</strong> {{ details.height }}</p>
+      <p><strong>Weight:</strong> {{ details.weight }}</p>
+      <p><strong>Allergies:</strong> {{ details.allergies }}</p>
+      <p><strong>Chronic Conditions:</strong> {{ details.conditions }}</p>
+      <p><strong>Medical History:</strong> {{ details.history }}</p>
+    </div>
+
+    {% if full_dashboard %}
+    <div class="card">
+      <h2>Upcoming Appointments</h2>
+      <table>
+        <tr><th>Date</th><th>Time</th><th>Doctor</th><th>Status</th></tr>
+        {% for appt in appointments %}
+          <tr>
+            <td>{{ appt.date }}</td>
+            <td>{{ appt.time }}</td>
+            <td>{{ appt.doctor }}</td>
+            <td>{{ appt.status }}</td>
+          </tr>
+        {% else %}
+          <tr><td colspan="4">No upcoming appointments</td></tr>
+        {% endfor %}
+      </table>
+    </div>
+
+    <div class="card">
+      <h2>Medical History</h2>
+      <table>
+        <tr><th>Date</th><th>Doctor</th><th>Diagnosis</th><th>Prescription</th></tr>
+        {% for record in medical_history %}
+          <tr>
+            <td>{{ record.date }}</td>
+            <td>{{ record.doctor }}</td>
+            <td>{{ record.diagnosis }}</td>
+            <td>{{ record.prescription }}</td>
+          </tr>
+        {% else %}
+          <tr><td colspan="4">No medical history available</td></tr>
+        {% endfor %}
+      </table>
+    </div>
+
+    <div class="card">
+      <h2>Book an Appointment</h2>
+      <p>Schedule a visit with your doctor at your convenience.</p>
+      <form action="{{ url_for('appointment_dashboard') }}" method="get">
+        <button type="submit" class="btn">Book Appointment</button>
+      </form>
+    </div>
+    {% endif %}
+  </div>
+</body>
+</html>

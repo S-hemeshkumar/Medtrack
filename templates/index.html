@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>MedTrack - Home</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Use Inter for a clean, modern look -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, #f0f4f8, #d9e2ec);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .card {
+      background-color: #ffffff;
+      padding: 50px 40px;
+      border-radius: 20px;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.05);
+      text-align: center;
+      width: 520px;
+    }
+
+    .card h1 {
+      color: #2c3e50;
+      font-size: 2.2rem;
+      margin-bottom: 16px;
+      font-weight: 600;
+    }
+
+    .card p {
+      color: #4a4a4a;
+      font-size: 1rem;
+      line-height: 1.5;
+      margin-bottom: 40px;
+    }
+
+    .buttons {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .buttons a {
+      padding: 12px 28px;
+      background-color: #1e87f0;
+      color: #ffffff;
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: 500;
+      transition: background-color 0.2s ease, transform 0.2s ease;
+    }
+
+    .buttons a:hover {
+      background-color: #0f6fc0;
+      transform: translateY(-2px);
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>Welcome to MedTrack</h1>
+    <p>Your digital companion for health tracking and appointment booking.</p>
+    <div class="buttons">
+      <a href="{{ url_for('get_started') }}">Get Started</a>
+
+    </div>
+  </div>
+</body>
+</html>

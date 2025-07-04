@@ -1,0 +1,98 @@
+<!-- templates/patient_details.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Enter Patient Details - MedTrack</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f0f4f8;
+      padding: 40px;
+      margin: 0;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: auto;
+      background-color: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #0077b6;
+    }
+
+    form label {
+      display: block;
+      margin-top: 15px;
+      font-weight: 500;
+    }
+
+    form input,
+    form textarea {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+
+    form button {
+      margin-top: 25px;
+      background-color: #0077b6;
+      color: white;
+      padding: 12px;
+      font-size: 1em;
+      border: none;
+      border-radius: 6px;
+      width: 100%;
+      cursor: pointer;
+    }
+
+    form button:hover {
+      background-color: #023e8a;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Enter Patient Details</h2>
+
+    <form method="POST" action="{{ url_for('save_patient_details') }}">
+      <label for="phone">Contact Number</label>
+      <input type="text" id="contact" name="contact" required autocomplete="off">
+
+
+
+      <label for="address">Address</label>
+      <input type="text" id="address" name="address" required>
+
+      <label for="height">Height (cm)</label>
+      <input type="number" id="height" name="height" required>
+
+      <label for="weight">Weight (kg)</label>
+      <input type="number" id="weight" name="weight" required>
+
+      <label for="blood_group">Blood Group</label>
+      <input type="text" id="blood_group" name="blood_group" required>
+
+      <label for="allergies">Allergies</label>
+      <input type="text" id="allergies" name="allergies">
+
+      <label for="conditions">Chronic Conditions</label>
+      <input type="text" id="conditions" name="conditions">
+
+      <label for="history">Medical History</label>
+      <textarea id="history" name="history" rows="4"></textarea>
+
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+</body>
+</html>

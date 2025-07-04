@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>View Patient Details - MedTrack</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f4f9fc;
+      margin: 0;
+    }
+    header {
+      background-color: #0077b6;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+    .container {
+      max-width: 800px;
+      margin: 30px auto;
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
+    }
+    h2 {
+      color: #0077b6;
+      text-align: center;
+    }
+    p {
+      font-size: 1rem;
+      margin: 10px 0;
+    }
+    strong {
+      color: #023e8a;
+    }
+    .btn-back {
+      display: inline-block;
+      margin-top: 20px;
+      background-color: #0077b6;
+      color: white;
+      padding: 10px 16px;
+      border: none;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .btn-back:hover {
+      background-color: #023e8a;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Patient Details - {{ patient.name }}</h1>
+  </header>
+
+  <div class="container">
+    <h2>Basic Information</h2>
+    <p><strong>Email:</strong> {{ patient.email }}</p>
+    <p><strong>Age:</strong> {{ patient.age }}</p>
+    <p><strong>Gender:</strong> {{ patient.gender }}</p>
+    <p><strong>Contact:</strong> {{ details.contact if details else '-' }}</p>
+    <p><strong>Address:</strong> {{ details.address if details else '-' }}</p>
+
+    <h2>Medical Info</h2>
+    <p><strong>Blood Group:</strong> {{ details.blood_group if details else '-' }}</p>
+    <p><strong>Height:</strong> {{ details.height if details else '-' }}</p>
+    <p><strong>Weight:</strong> {{ details.weight if details else '-' }}</p>
+    <p><strong>Allergies:</strong> {{ details.allergies if details else '-' }}</p>
+    <p><strong>Chronic Conditions:</strong> {{ details.conditions if details else '-' }}</p>
+    <p><strong>Medical History:</strong> {{ details.history if details else '-' }}</p>
+
+    <h2>Past Appointments</h2>
+    {% if medical_history %}
+      <ul>
+        {% for record in medical_history %}
+          <li>
+            <strong>{{ record.date }} with Dr. {{ record.doctor }}:</strong>
+            {{ record.diagnosis }} — Prescription: {{ record.prescription }}
+          </li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p>No medical history available.</p>
+    {% endif %}
+
+    <a href="{{ url_for('doctor_dashboard') }}" class="btn-back">← Back to Dashboard</a>
+  </div>
+</body>
+</html>

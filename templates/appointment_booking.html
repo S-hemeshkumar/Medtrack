@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Book Appointment - MedTrack</title>
+  <style>
+    /* Reset & box sizing */
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #e0f7fa, #f4f9fc);
+      color: #333;
+    }
+
+    header {
+      background-color: #0077b6;
+      color: white;
+      padding: 30px;
+      text-align: center;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .appointment-form {
+      position: relative; /* ensure z-index context */
+      max-width: 600px;
+      margin: 40px auto;
+      background: white;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+      z-index: 0;
+    }
+
+    h2 {
+      text-align: center;
+      color: #0077b6;
+      margin-bottom: 25px;
+    }
+
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: bold;
+      cursor: text;
+    }
+
+    /* ensure inputs are always clickable */
+    .appointment-form input,
+    .appointment-form select,
+    .appointment-form textarea {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 1rem;
+      pointer-events: auto;
+      position: relative;
+      z-index: 1;
+      background: white;
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 12px;
+      width: 100%;
+      background-color: #0077b6;
+      color: white;
+      font-size: 1rem;
+      font-weight: bold;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #023e8a;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>MedTrack - Book an Appointment</h1>
+  </header>
+
+  <div class="appointment-form">
+    <h2>Book Your Appointment</h2>
+    <form method="POST" action="{{ url_for('submit_appointment') }}">
+      <label for="patient_name">
+        Patient Name
+        <input type="text" id="patient_name" name="patient_name" required>
+      </label>
+
+      <label for="email">
+        Email Address
+        <input type="email" id="email" name="email" required>
+      </label>
+
+      <label for="phone">Contact Number</label>
+<input
+  type="text"
+  id="phone"
+  name="phone"
+  required
+  autocomplete="off"
+  value=""
+  style="pointer-events: auto; background-color: white;"
+>
+
+      <label for="doctor">
+        Select Doctor
+        <select id="doctor" name="doctor" required>
+          <option value="">Choose Doctor</option>
+{% for doc in doctors %}
+  <option value="{{ doc.name }}">
+    {{ doc.name }} ({{ doc.specialization }}, Available: {{ doc.availability }})
+  </option>
+{% endfor %}
+
+        </select>
+      </label>
+
+      <label for="date">
+        Preferred Date
+        <input type="date" id="date" name="date" required>
+      </label>
+
+      <label for="time">
+        Preferred Time
+        <input type="time" id="time" name="time" required>
+      </label>
+
+      <label for="problem">
+        Describe Your Problem
+        <textarea id="problem" name="problem" rows="3" required></textarea>
+      </label>
+
+      <button type="submit">Confirm Appointment</button>
+    </form>
+  </div>
+</body>
+</html>
