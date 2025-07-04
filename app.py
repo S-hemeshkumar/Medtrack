@@ -31,16 +31,15 @@ DOCTOR_DETAILS_TABLE_NAME = os.environ.get('DOCTOR_DETAILS_TABLE_NAME', 'MedTrac
 MEDICAL_HISTORY_TABLE_NAME = os.environ.get('MEDICAL_HISTORY_TABLE_NAME', 'MedTrackMedicalHistory')
 
 try:
-    dynamodb = boto3.resource('dynamodb', region_name=AWS_REGION_NAME)
-    sns = boto3.client('sns', region_name=AWS_REGION_NAME)
-    SNS_TOPIC_ARN = os.environ.get('SNS_TOPIC_ARN')
-except Exception as e:
-    print(f"Error initializing DynamoDB or SNS: {e}")
-    dynamodb = None
-    sns = None
-    SNS_TOPIC_ARN = None
-
-     print("AWS credentials not found. Running in local mode.")
+    if os.environ.get('AWS_ACCESS_KEY_ID'):
+        dynamodb = boto3.resource('dynamodb', region_name=AWS_REGION_NAME)
+        sns = boto3.client('sns', region_name=AWS_REGION_NAME)
+        SNS_TOPIC_ARN = os.environ.get('SNS_TOPIC_ARN')
+    else:
+        dynamodb = None
+        sns = None
+        SNS_TOPIC_ARN = None
+        print("AWS credentials not found. Running in local mode.")
 except Exception as e:
     print(f"Error initializing DynamoDB or SNS: {e}")
     dynamodb = None
